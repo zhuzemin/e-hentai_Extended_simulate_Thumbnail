@@ -9,7 +9,7 @@
 // @include     https://e-hentai.org/?*
 // @include     https://exhentai.org/tag/*
 // @include     https://e-hentai.org/tag/*
-// @version     1.0
+// @version     1.1
 // @grant       GM_xmlhttpRequest
 // @grant         GM_registerMenuCommand
 // @grant         GM_setValue
@@ -100,26 +100,17 @@ function getLocation(href) {
     return l;
 }
 
+
+var TagsLast=[];
 var init = function () {
     SetExtended();
   var LastDivNum=0;
-    var tags;
-  try{
-    tags=GM_getValue("tags").split(";");
-  }catch(e){
-    debug("Not set tags.");
-  }
-  if(tags==undefined){
-      var tags=[];
-
-  }
   CreateStyle();
     var div=document.querySelector("div.ido");
     div.style="max-width:1370px";
     setInterval(function(){
         var tables=document.querySelectorAll("table.itg.glte");
   if(LastDivNum<tables.length){
-      debug("here");
       var table=tables[LastDivNum];
       var tbody=table.querySelector("tbody");
       tbody.className="itg gld";
@@ -135,32 +126,57 @@ var init = function () {
         var thumb=tr.querySelector("td.gl1e");
         thumb.firstChild.style="height:340px;";
         thumb.insertBefore(detail,null);
-        var div=tr.querySelector("div.gl4e.glname");
-        table=div.childNodes[1].querySelector("table");
-        if(table!=null){
-            var TagListCurrent=table.querySelectorAll("div");
-            for(var TagCurrent of TagListCurrent){
-                if(tags.length==0){
-                    break;
-                }
-                for(var tag of tags){
-                    debug("Highlight: "+tag);
-                    if(tag.length>1){
-                        if(TagCurrent.innerText==tag.trim()){
-                            TagCurrent.className +=" glowbox";
-                            break;
+  }
+    LastDivNum=tables.length;
+  }
+        HighlightTag();
+    }, 2000);
+
+}
+
+function HighlightTag(){
+    var tags;
+    try {
+        tags = GM_getValue("tags").split(";");
+    } catch (e) {
+        debug("Not set tags.");
+    }
+    if (tags == undefined) {
+        var tags = [];
+    }
+    if(JSON.stringify(tags)!=JSON.stringify(TagsLast)){
+        TagsLast=tags;
+        debug("TagsLast: "+TagsLast);
+    var tables=document.querySelectorAll("table.itg.glte");
+    for(var table of tables){
+        var tbody=table.querySelector("tbody");
+        for (var i = 0; i < tbody.childNodes.length; i++) {
+            var tr = tbody.childNodes[i];
+            var div = tr.querySelector("div.gl4e.glname");
+            table = div.childNodes[1].querySelector("table");
+            if (table != null) {
+                var TagListCurrent = table.querySelectorAll("div");
+                for (var TagCurrent of TagListCurrent) {
+                    for (var tag of tags) {
+                        if (tag.length > 1) {
+                            if (TagCurrent.innerText == tag.trim()) {
+                                debug("Highlight: " + tag);
+                                TagCurrent.className += " glowbox";
+                                break;
+                            }
+                            else if(tag==tags[tags.length-1]){
+                                TagCurrent.className = TagCurrent.className.replace(" glowbox","");
+                            }
                         }
                     }
+
                 }
 
             }
 
-        }
-  }
-    LastDivNum=tables.length;
-
-  }
-    }, 2000);
+    }
+    }
+    }
 
 }
 window.addEventListener('DOMContentLoaded', init);
