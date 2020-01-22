@@ -9,7 +9,7 @@
 // @include     https://e-hentai.org/?*
 // @include     https://exhentai.org/tag/*
 // @include     https://e-hentai.org/tag/*
-// @version     1.1
+// @version     1.2
 // @grant       GM_xmlhttpRequest
 // @grant         GM_registerMenuCommand
 // @grant         GM_setValue
@@ -137,11 +137,11 @@ var init = function () {
 function HighlightTag(){
     var tags;
     try {
-        tags = GM_getValue("tags").split(";");
+        tags = GM_getValue("tags").trim().replace(/;$/,"").split(";");
     } catch (e) {
         debug("Not set tags.");
     }
-    if (tags == undefined) {
+    if (tags == undefined||tags.length ==0) {
         var tags = [];
     }
     if(JSON.stringify(tags)!=JSON.stringify(TagsLast)){
@@ -167,6 +167,10 @@ function HighlightTag(){
                             else if(tag==tags[tags.length-1]){
                                 TagCurrent.className = TagCurrent.className.replace(" glowbox","");
                             }
+                        }
+                        else{
+                            TagCurrent.className = TagCurrent.className.replace(" glowbox","");
+
                         }
                     }
 
