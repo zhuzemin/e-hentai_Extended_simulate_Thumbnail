@@ -1,4 +1,4 @@
-﻿// ==UserScript==
+// ==UserScript==
 // @name        e-hentai Extended simulate Thumbnail and Highlight Tag
 // @namespace   e-hentai_Extended_simulate_Thumbnail
 // @supportURL  https://github.com/zhuzemin
@@ -9,7 +9,7 @@
 // @include     https://e-hentai.org/?*
 // @include     https://exhentai.org/tag/*
 // @include     https://e-hentai.org/tag/*
-// @version     1.2
+// @version     1.3
 // @grant       GM_xmlhttpRequest
 // @grant         GM_registerMenuCommand
 // @grant         GM_setValue
@@ -102,6 +102,7 @@ function getLocation(href) {
 
 
 var TagsLast=[];
+var TablesLast=0;
 var init = function () {
     SetExtended();
   var LastDivNum=0;
@@ -144,13 +145,21 @@ function HighlightTag(){
     if (tags == undefined||tags.length ==0) {
         var tags = [];
     }
-    if(JSON.stringify(tags)!=JSON.stringify(TagsLast)){
+    var tables=document.querySelectorAll("table.itg.glte");
+    if(tables.length>TablesLast||JSON.stringify(tags)!=JSON.stringify(TagsLast)){
+        TablesLast=tables.length;
         TagsLast=tags;
         debug("TagsLast: "+TagsLast);
-    var tables=document.querySelectorAll("table.itg.glte");
+        var n;
+        if(tables.length>TablesLast){
+            n=TablesLast;
+        }
+        else{
+            n= 0;
+        }
     for(var table of tables){
         var tbody=table.querySelector("tbody");
-        for (var i = 0; i < tbody.childNodes.length; i++) {
+        for (var i = n; i < tbody.childNodes.length; i++) {
             var tr = tbody.childNodes[i];
             var div = tr.querySelector("div.gl4e.glname");
             table = div.childNodes[1].querySelector("table");
