@@ -5,10 +5,10 @@
 // @name:zh-CN        e-hentai Extended use Thumbnail style and Highlight Tag
 // @namespace   e-hentai_Extended_simulate_Thumbnail
 // @supportURL  https://github.com/zhuzemin
-// @description:zh-CN e-hentai Extended use Thumbnail style and Highlight Tag
-// @description:zh-TW  e-hentai Extended use Thumbnail style and Highlight Tag
-// @description:ja e-hentai Extended use Thumbnail style and Highlight Tag
-// @description e-hentai Extended use Thumbnail style and Highlight Tag
+// @description:zh-CN e-hentai Extended use Thumbnail style and Highlight Tag in search page
+// @description:zh-TW  e-hentai Extended use Thumbnail style and Highlight Tag in search page
+// @description:ja e-hentai Extended use Thumbnail style and Highlight Tag in search page
+// @description e-hentai Extended use Thumbnail style and Highlight Tag in search page
 // @include     https://exhentai.org/
 // @include     https://e-hentai.org/
 // @include     https://exhentai.org/?*
