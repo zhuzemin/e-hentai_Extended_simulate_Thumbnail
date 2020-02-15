@@ -1,8 +1,14 @@
 // ==UserScript==
-// @name        e-hentai Extended simulate Thumbnail and Highlight Tag
+// @name        e-hentai Extended use Thumbnail style and Highlight Tag
+// @name:ja        e-hentai Extended use Thumbnail style and Highlight Tag
+// @name:zh-TW         e-hentai Extended use Thumbnail style and Highlight Tag
+// @name:zh-CN        e-hentai Extended use Thumbnail style and Highlight Tag
 // @namespace   e-hentai_Extended_simulate_Thumbnail
 // @supportURL  https://github.com/zhuzemin
-// @description E-Hentai Extended模仿THumbnail, 并且高亮Tag
+// @description:zh-CN e-hentai Extended use Thumbnail style and Highlight Tag
+// @description:zh-TW  e-hentai Extended use Thumbnail style and Highlight Tag
+// @description:ja e-hentai Extended use Thumbnail style and Highlight Tag
+// @description e-hentai Extended use Thumbnail style and Highlight Tag
 // @include     https://exhentai.org/
 // @include     https://e-hentai.org/
 // @include     https://exhentai.org/?*
@@ -143,7 +149,7 @@ function HighlightTag(){
         debug("Not set tags.");
     }
     if (tags == undefined||tags.length ==0) {
-        var tags = [];
+        tags = [];
     }
     var tables=document.querySelectorAll("table.itg.glte");
     if(tables.length>TablesLast||JSON.stringify(tags)!=JSON.stringify(TagsLast)){
