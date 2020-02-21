@@ -9,13 +9,9 @@
 // @description:zh-TW  e-hentai Extended use Thumbnail style and Highlight Tag in search page
 // @description:ja e-hentai Extended use Thumbnail style and Highlight Tag in search page
 // @description e-hentai Extended use Thumbnail style and Highlight Tag in search page
-// @include     https://exhentai.org/
-// @include     https://e-hentai.org/
-// @include     https://exhentai.org/?*
-// @include     https://e-hentai.org/?*
-// @include     https://exhentai.org/tag/*
-// @include     https://e-hentai.org/tag/*
-// @version     1.3
+// @include     https://exhentai.org/*
+// @include     https://e-hentai.org/*
+// @version     1.31
 // @grant       GM_xmlhttpRequest
 // @grant         GM_registerMenuCommand
 // @grant         GM_setValue
